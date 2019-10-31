@@ -10,14 +10,14 @@
     import Header from "./components/Header.vue";
     import profile from "./components/profile.vue";
     import home from "./components/home.vue";
-    import login from "./components/login.vue";
-    import {dataRef} from "./database.js";
+    //import login from "./components/login.vue";
+   import {dataRef} from "./database.js";
     import {donationsRef} from "./database.js";
-    import {store} from './store.js'
+    //import {store} from './store.js'
 
-    
+
 export default {
-    name: 'app', 
+    name: 'app',
     computed:{
         //returns the current user's email
         currentUser(){
@@ -25,7 +25,7 @@ export default {
         }
     },
     firebase: {
-        data: dataRef, 
+        data: dataRef,
         donations: donationsRef
     },
     data () {
@@ -36,7 +36,7 @@ export default {
         Header,
         profile,
         home,
-        login
+        //login
     },
     created () {
         // when the page is reloaded, the user will still be logged in
