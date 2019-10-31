@@ -2,12 +2,12 @@ import firebase from 'firebase';
 
 // Initialize Firebase
 var config = {
-    apiKey: "AIzaSyCer-ja4FYfPjI2xtauwcedyZ5GucqzDoc",
-    authDomain: "charitability-94e58.firebaseapp.com",
-    databaseURL: "https://charitability-94e58.firebaseio.com",
-    projectId: "charitability-94e58",
-    storageBucket: "charitability-94e58.appspot.com",
-    messagingSenderId: "319350461000"
+    apiKey: "AIzaSyBJvgUuyT8F5w-cMwHCMTqDjMyPTbIFmlE",
+    authDomain: "pets-fcb34.firebaseapp.com",
+    databaseURL: "https://pets-fcb34.firebaseio.com/",
+    projectId: "pets-fcb34",
+    storageBucket: "pets-fcb34.appspot.com",
+    messagingSenderId: "18111954663"
 };
 var fbApp = firebase.initializeApp(config);
 
