@@ -10,10 +10,8 @@
     import Header from "./components/Header.vue";
     import profile from "./components/profile.vue";
     import home from "./components/home.vue";
-    //import login from "./components/login.vue";
    import {dataRef} from "./database.js";
     import {donationsRef} from "./database.js";
-    //import {store} from './store.js'
 
 
 export default {
