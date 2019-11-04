@@ -4,11 +4,11 @@
     <!-- navigation bar-->
     <div id="navbar">
         <div id="leftnav">
-<!--            navigation to specific links based on roles, currently just text, will be buttons-->
-                <router-link class="routerLink" to='/home'><a id="home">Home</a></router-link>
+<!--            navigation to home -->
+                <router-link class="routerLink" to='/'><a id="home">Home</a></router-link>
         </div>
         <div id="rightnav">
-<!--            logging in and profile page-->
+<!--            logging in and profile page, currently just a placeholder-->
             <a id="login" >Login </a>
         </div>
     </div>
