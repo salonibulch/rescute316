@@ -1,6 +1,7 @@
 <template>
     <div id="home">
           <h1><b>All pets</b></h1>
+          <router-link class="routerLink" to='/profile'><a id="profile">Click for example pet</a></router-link>
     </div>
 </template>
 

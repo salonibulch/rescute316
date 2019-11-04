@@ -5,7 +5,7 @@
     <div id="navbar">
         <div id="leftnav">
 <!--            navigation to specific links based on roles, currently just text, will be buttons-->
-            <a id="home">Home</a>
+                <router-link class="routerLink" to='/home'><a id="home">Home</a></router-link>
         </div>
         <div id="rightnav">
 <!--            logging in and profile page-->
