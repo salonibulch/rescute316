@@ -4,14 +4,22 @@
             <div id="profileInfo">
               <br>
               <b>Name: </b>
+              <p> {{name}} </p>
               <br>
               <b>age: </b>
+                <p> {{age}} </p>
               <br>
               <b>Breed: </b>
+                <p> {{breed}} </p>
               <br>
               <b>Special care Instructions: </b>
+                <p> {{care}} </p>
+              <br>
+              <b> Owner Name: </b>
+                <p> {{owner_name}} </p>
               <br>
               <b>Contact Owner at: </b>
+                <p> {{contact}} </p>
             </div>
         </div>
     </div>
@@ -31,6 +39,7 @@
                 age:'',
                 breed:'',
                 care:'',
+                owner_name:'',
                 contact:'',
             }
         },
