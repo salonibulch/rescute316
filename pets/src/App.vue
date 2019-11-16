@@ -10,8 +10,8 @@
     import Header from "./components/Header.vue";
     import profile from "./components/profile.vue";
     import home from "./components/home.vue";
-   import {dataRef} from "./database.js";
-    import {donationsRef} from "./database.js";
+   import {petsRef} from "./database.js";
+    import {ownersRef} from "./database.js";
 
 
 export default {
@@ -23,8 +23,8 @@ export default {
         }
     },
     firebase: {
-        data: dataRef,
-        donations: donationsRef
+        pets: petsRef,
+        owners: ownersRef
     },
     data () {
         return {
@@ -34,7 +34,6 @@ export default {
         Header,
         profile,
         home,
-        //login
     },
     created () {
         // when the page is reloaded, the user will still be logged in

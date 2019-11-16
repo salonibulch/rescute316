@@ -28,7 +28,6 @@ Vue.config.productionTip = false
 const routes = [
     { path:'/', component:home, props: true},
     { path:'/profile', component:profile , props: true},
-    { path:'/login', component:login , props: true},
 ]
 
 //creation of router
