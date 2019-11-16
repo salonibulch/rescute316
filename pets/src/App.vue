@@ -10,8 +10,9 @@
     import Header from "./components/Header.vue";
     import profile from "./components/profile.vue";
     import home from "./components/home.vue";
-   import {petsRef} from "./database.js";
+    import {petsRef} from "./database.js";
     import {ownersRef} from "./database.js";
+    import {store} from './store.js';
 
 
 export default {

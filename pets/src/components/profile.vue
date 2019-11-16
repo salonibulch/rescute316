@@ -27,11 +27,11 @@
 
 <script>
     import firebase from 'firebase'
-    import { dataRef, storageRef } from "../database.js";
+    import { petsRef } from "../database.js";
     export default {
         name: "profile",
         firebase:{
-            data: dataRef
+            pets: petsRef
         },
         data() {
             return {
