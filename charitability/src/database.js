@@ -2,13 +2,16 @@ import firebase from 'firebase';
 
 // Initialize Firebase
 var config = {
-    apiKey: "AIzaSyCer-ja4FYfPjI2xtauwcedyZ5GucqzDoc",
-    authDomain: "charitability-94e58.firebaseapp.com",
-    databaseURL: "https://charitability-94e58.firebaseio.com",
-    projectId: "charitability-94e58",
-    storageBucket: "charitability-94e58.appspot.com",
-    messagingSenderId: "319350461000"
+    apiKey: "AIzaSyALWSwhIeLipdMTtz4c-Y3n_c4nh18wM_s",
+    authDomain: "rescute-95042.firebaseapp.com",
+    databaseURL: "https://rescute-95042.firebaseio.com",
+    projectId: "rescute-95042",
+    storageBucket: "rescute-95042.appspot.com",
+    messagingSenderId: "406626148380",
+    appId: "1:406626148380:web:3ebfb113cbcab713707fd9",
+    measurementId: "G-50BTBFYK5S"
 };
+
 var fbApp = firebase.initializeApp(config);
 
 // global reference to remote database app
