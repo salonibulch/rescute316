@@ -30,19 +30,29 @@
     import { petsRef } from "../database.js";
     export default {
         name: "profile",
+        props:{
+          name:{
+            type: String,
+            required: true
+            },
+        },
         firebase:{
             pets: petsRef
         },
+        mounted(){
+        this.name = this.$router.params.name
+        },
         data() {
             return {
-                name:'',
                 age:'',
                 breed:'',
                 care:'',
                 owner_name:'',
                 contact:'',
+
             }
         },
+
     }
 </script>
 

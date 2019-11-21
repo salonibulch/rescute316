@@ -27,7 +27,12 @@ Vue.config.productionTip = false
 //routes and url path
 const routes = [
     { path:'/', component:home, props: true},
-    { path:'/profile', component:profile , props: true},
+    { path:'/profile/', component:profile ,
+      props:{
+        header: true,
+        content: true
+      },
+   },
 ]
 
 //creation of router
