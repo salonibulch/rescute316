@@ -11,7 +11,7 @@
                               <h5>{{ pet.name }}</h5>
                               <p>{{ pet.age }}</p>
                               <div id="learnMore">
-                                  <button class="btn btn-success" @click="moreInfo('Andy',pet.age,pet.breed,pet.user-email)">Learn More</button>
+                                  <button class="btn btn-success" @click="moreInfo(pet.name,pet.age,pet.breed,pet.user-email)">Learn More</button>
                               </div>                              <br>
                               <div id="infoModal">
 
@@ -24,7 +24,6 @@
                                     </div>
                                       <div class="infoBody">
       <!--                                  information in the modal-->
-                                        <br>
                                         <br>
                                       <h4>Age</h4>
                                         {{petAge}}
