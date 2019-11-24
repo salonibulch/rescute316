@@ -10,6 +10,7 @@
         <div id="rightnav">
 <!--            logging in and profile page, currently just a placeholder-->
             <a id="login" >Login </a>
+            <router-link class="routerLink" to='/'><a id="login">Login</a></router-link>
         </div>
     </div>
 </div>
