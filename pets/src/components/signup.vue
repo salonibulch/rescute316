@@ -4,6 +4,10 @@
             <h2>Sign Up</h2>
             <input class="inputForm" type="text" v-model="email" placeholder="Email"><br>
             <input class="inputForm" type="password" v-model="password" placeholder="Password"><br>
+            <input class="inputForm" type="tel"  pattern="[0-9]" maxlength="10" v-model="number" placeholder="Number"><br>
+            <input class="inputForm" type="text" v-model="address" placeholder="Address"><br>
+
+
             <button class="btn btn-success" @click="signUp">Sign Up</button><br>
             <span>Have an account? <router-link to="/login"><button id="loginButton" class="btn btn-primary btn-sm">Login</button></router-link></span>
         </div>
@@ -18,7 +22,8 @@ export default {
     data() {
         return {
             email: '',
-            password: ''
+            password: '',
+            address:''
         }
     },
     methods: {
@@ -34,6 +39,8 @@ export default {
                     dataRef.push({
                         email: this.email,
                         password: this.password,
+                        address: this.address,
+                        number: this.number,
                         userImgUrl: "http://www.styletextile.com/wp-content/uploads/2017/10/profile.jpg",
                         donations: false,
                         favorites: false,
