@@ -18,6 +18,7 @@ import home from './components/home.vue'
 
 Vue.use(VueRouter)
 Vue.use(BootstrapVue)
+
 // connect Firebase to Vue
 Vue.use(VueFire);
 

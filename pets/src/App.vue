@@ -10,9 +10,13 @@
     import Header from "./components/Header.vue";
     import profile from "./components/profile.vue";
     import home from "./components/home.vue";
+    import Router from 'vue-router';
+    import routerview from './router.js'
+    import login from "./components/login.vue";
     import {petsRef} from "./database.js";
     import {ownersRef} from "./database.js";
     import {store} from './store.js';
+
 
 
 export default {
@@ -35,6 +39,7 @@ export default {
         Header,
         profile,
         home,
+        login
     },
     created () {
         // when the page is reloaded, the user will still be logged in
