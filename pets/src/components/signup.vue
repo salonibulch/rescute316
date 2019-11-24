@@ -2,7 +2,8 @@
         <div class="signup">
             <!-- sign up form-->
             <h2>Sign Up</h2>
-            <input class="inputForm" type="text" v-model="email" placeholder="Email"><br>
+            <input class="inputForm" type="text" v-model="name" placeholder="Name"><br>
+            <input class="inputForm" type="email" v-model="email" placeholder="Email"><br>
             <input class="inputForm" type="password" v-model="password" placeholder="Password"><br>
             <input class="inputForm" type="tel"  pattern="[0-9]" maxlength="10" v-model="number" placeholder="Number"><br>
             <input class="inputForm" type="text" v-model="address" placeholder="Address"><br>
