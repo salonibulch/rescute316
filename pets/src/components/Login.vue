@@ -44,7 +44,7 @@ export default {
                     //check if user is admin
                     if (this.email=='admin@admin.com'){
                         this.$store.state.isAdmin = true;
-                    }
+                    }      
                 },
                 //returns error message if log in fails
                 (err)=>{

@@ -15,6 +15,7 @@ import profile from './components/profile.vue'
 import home from './components/home.vue'
 import login from './components/login.vue'
 import signup from './components/signup.vue'
+import owner from './components/owner.vue'
 
 
 Vue.use(VueRouter)
@@ -36,6 +37,13 @@ const routes = [
         content: true
       },
    },
+   {
+      path: '/owner/',
+      component: owner,
+      meta: { 
+          requiresAuth: true
+      },
+},
 ]
 
 //creation of router
