@@ -1,28 +1,35 @@
 <template>
-    <div id="profile">
-        <div id="container">
-            <div id="profileInfo">
-              <br>
-              <b>Name: </b>
-              <p> {{name}} </p>
-              <br>
-              <b>age: </b>
-                <p> {{age}} </p>
-              <br>
-              <b>Breed: </b>
-                <p> {{breed}} </p>
-              <br>
-              <b>Special care Instructions: </b>
-                <p> {{care}} </p>
-              <br>
-              <b> Owner Name: </b>
-                <p> {{owner_name}} </p>
-              <br>
-              <b>Contact Owner at: </b>
-                <p> {{contact}} </p>
-            </div>
+<div id="profile">
+    <div id="container">
+    <div id="profileInfo">
+        <!--add profile picture-->
+        <div id="addInfo">
+            <p><b>Add Dog Picture:</b></p>
+            <form id="form" @submit.prevent="storeUserImage">
+                        <input type="file" id="userPictureInput">
+                    </form>
+            <br>
+            <p><b>Name:</b></p>
+            <input v-model="name" type="text" placeholder="Dog Name">
+            <br>
+            <br>
+            <p><b>Breed:</b></p>
+            <input v-model="breed" type="text" placeholder="Dog Breed">
+            <br>
+            <br>
+            <p><b>Age:</b></p>
+            <input v-model="age" type="text" placeholder="Dog Age">
+            <br>
+            <br>
+            <p><b>Special Needs:</b></p>
+            <input v-model="needs" type="text" placeholder="Special Needs">
+            <br>
+            <br>
+            <input type="submit" id="submitDog" class="submitButton" @click.prevent="submit">
         </div>
     </div>
+        </div>
+</div>
 </template>
 
 <script>
@@ -30,28 +37,38 @@
     import { petsRef } from "../database.js";
     export default {
         name: "profile",
-        props:{
-          name:{
-            type: String,
-            required: true
-            },
-        },
         firebase:{
             pets: petsRef
         },
-        mounted(){
-        this.name = this.$router.params.name
-        },
         data() {
             return {
+                name:'',
                 age:'',
                 breed:'',
-                care:'',
-                owner_name:'',
-                contact:'',
-
+                needs:'',
             }
         },
+        methods:{
+        submit(){
+          if(this.name==''|| this.breed==''|| this.age=='' || this.needs==''){
+            alert('one of the fields was left empty. fill all fields before submitting')
+          }
+          else{
+          petsRef.push({
+            name: this.name,
+            age: this.age,
+            breed: this.breed,
+            picture: document.getElementById('userPictureInput'),
+            specialneeds: this.needs,
+            useremail:'temp@gmail.com'
+            })
+            this.name='';
+            this.age='';
+            this.breed='';
+            this.needs='';
+        }
+        },
+        }
 
     }
 </script>

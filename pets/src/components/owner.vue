@@ -3,6 +3,8 @@
         <div id="container">
             <div id="ownerInfo">
               <br>
+              <router-link class="routerLink" to='/profile'><a id="profile">Click to add pet</a></router-link>
+
               <b>Name: </b>
               <p> {{name}} </p>
               <br>

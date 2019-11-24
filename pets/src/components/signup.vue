@@ -16,8 +16,8 @@
 
 <script>
 import firebase from 'firebase';
-import { dataRef, storageRef } from '../database.js';
-    
+import { ownersRef} from '../database.js';
+
 export default {
     name: 'signup',
     data() {
@@ -37,7 +37,7 @@ export default {
                     this.$store.state.currentUser = this.email;
                     this.$store.state.userImgUrl = "http://www.styletextile.com/wp-content/uploads/2017/10/profile.jpg"
                 //add user to firebase database
-                    dataRef.push({
+                    ownersRef.push({
                         email: this.email,
                         password: this.password,
                         address: this.address,
@@ -48,7 +48,7 @@ export default {
                         goalAmount: 0,
                         donationTotal: 0
                     });
-                //add default profile picture to user in firebase 
+                //add default profile picture to user in firebase
                     user.updateProfile({
                         photoURL: 'http://www.styletextile.com/wp-content/uploads/2017/10/profile.jpg'
                         })

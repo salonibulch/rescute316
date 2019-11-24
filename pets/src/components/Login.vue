@@ -12,7 +12,7 @@
 
 <script>
 import firebase from 'firebase';
-import { dataRef } from '../database.js';
+import { ownersRef } from '../database.js';
 export default {
     name: 'login',
     data() {
@@ -22,7 +22,7 @@ export default {
         }
     },
     firebase:{
-        data: dataRef
+        data: ownersRef
     },
     methods: {
         //log user in
