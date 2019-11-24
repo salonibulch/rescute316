@@ -11,9 +11,10 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 
-
 import profile from './components/profile.vue'
 import home from './components/home.vue'
+import login from './components/login.vue'
+import signup from './components/signup.vue'
 
 
 Vue.use(VueRouter)
@@ -27,6 +28,8 @@ Vue.config.productionTip = false
 //routes and url path
 const routes = [
     { path:'/', component:home, props: true},
+    { path:'/login/', component:login, props: true},
+    { path:'/signup/', component:signup, props: true},
     { path:'/profile/', component:profile ,
       props:{
         header: true,
