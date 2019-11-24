@@ -34,11 +34,12 @@
 
 <script>
     import firebase from 'firebase'
-    import { petsRef } from "../database.js";
+    import { petsRef, storageRef } from "../database.js";
     export default {
         name: "profile",
         firebase:{
-            pets: petsRef
+            pets: petsRef,
+            storage: storageRef
         },
         data() {
             return {
@@ -58,7 +59,6 @@
             name: this.name,
             age: this.age,
             breed: this.breed,
-            picture: document.getElementById('userPictureInput'),
             specialneeds: this.needs,
             useremail:'temp@gmail.com'
             })
@@ -66,6 +66,17 @@
             this.age='';
             this.breed='';
             this.needs='';
+
+            var input = document.getElementById('userPictureInput');
+                        // have all fields in the form been completed
+                        if (input.files.length > 0) {
+                            var file = input.files[0];
+                            // get reference to a storage location and
+                            storageRef.child('images/' + this.name + this.breed)
+                                      .put(file);
+                                      // reset input values so user knows to input new data
+                                      input.value = '';
+                        }
         }
         },
         }
@@ -81,6 +92,14 @@
         margin-top: 10px;
     }
 /*  styling for profile div */
+<style scoped>
+/* styling for profile information   */
+    #profileInfo{
+        display:inline;
+        margin-left: 55px;
+        margin-top: 10px;
+    }
+/*  styling for profile div */
     #container{
         margin-top:50px;
         border-left: 1px solid black;
@@ -88,5 +107,15 @@
         width:600px;
         margin: 0 auto;
         height: 650px;
+    }
+/*  styling for submit button*/
+    .submitButton{
+        height:32px;
+        width: 70px;
+        background-color:deepskyblue;
+        color:white;
+        border-radius: 5px;
+        border:none;
+        cursor:pointer;
     }
 </style>

@@ -11,7 +11,7 @@
                               <h5>{{ pet.name }}</h5>
                               <p>{{ pet.age }}</p>
                               <div id="learnMore">
-                                  <button class="btn btn-success" @click="moreInfo(pet.name,pet.age,pet.breed,pet.useremail)">Learn More</button>
+                                  <button class="btn btn-success" @click="moreInfo(pet.name,pet.age,pet.breed,pet.useremail,pet.specialneeds)">Learn More</button>
                               </div>                              <br>
                               <div id="infoModal">
 
@@ -33,6 +33,10 @@
                                         {{petBreed}}
                                         <br>
                                         <br>
+                                        <h4>Special Needs</h4>
+                                          {{petNeeds}}
+                                          <br>
+                                          <br>
                                       <h4>Owner Email <b>{{petOwnerEmail}}</b></h4>
                                         <br>
                                         <br>
@@ -88,6 +92,7 @@ import firebase from "firebase";
           petAge:'',
           petBreed:'',
           petOwnerEmail:'',
+          petNeeds:'',
           petPicture:'',
           }
         },
@@ -136,13 +141,14 @@ import firebase from "firebase";
             activePage (page) {
                 return this.pageNumber === page ? 'active' : '';
             },
-            moreInfo(name, age, breed, userEmail){
+            moreInfo(name, age, breed, userEmail, specialNeeds){
             var modal = document.getElementById('infoModal');
             modal.style.display = "block";
             this.petName=name;
             this.petAge=age;
             this.petBreed=breed;
             this.petOwnerEmail=userEmail;
+            this.petNeeds=specialNeeds;
             },
             closeInfo(){
                 var modal = document.getElementById('infoModal');
