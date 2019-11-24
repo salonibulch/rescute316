@@ -31,20 +31,6 @@ export default {
             firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
                 (user)=>{
                     this.$router.replace('owner');
-                    this.$store.state.currentUser = this.email;
-                    for(var i=0;i<this.data.length;i++){
-                        if(this.data[i].email==this.email){
-                            this.$store.state.userImgUrl = this.data[i].userImgUrl;
-                        }
-                    }
-                    //set profile picture in store.js
-                    user.updateProfile({
-                        photoURL: this.$store.state.userImgUrl
-                        })
-                    //check if user is admin
-                    if (this.email=='admin@admin.com'){
-                        this.$store.state.isAdmin = true;
-                    }      
                 },
                 //returns error message if log in fails
                 (err)=>{
