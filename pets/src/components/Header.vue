@@ -9,7 +9,7 @@
         </div>
         <div id="rightnav">
 <!--            logging in and profile page, currently just a placeholder-->
-            <a id="login" >Login </a>
+<router-link to="/login" active-class="login">Login</router-link>
         </div>
     </div>
 </div>
