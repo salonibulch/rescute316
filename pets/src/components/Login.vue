@@ -30,7 +30,7 @@ export default {
             //authenticate user
             firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
                 (user)=>{
-                    this.$router.replace('home');
+                    this.$router.replace('owner');
                     this.$store.state.currentUser = this.email;
                     for(var i=0;i<this.data.length;i++){
                         if(this.data[i].email==this.email){
