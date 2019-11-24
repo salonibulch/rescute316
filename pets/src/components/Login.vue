@@ -1,6 +1,5 @@
 <template>
   <div class="login">
-    <img src="../assets/dc_logo.jpg" width="300px">
     <h3>Rescute</h3>
     <input 
       type="text" 

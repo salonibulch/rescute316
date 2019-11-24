@@ -1,6 +1,5 @@
 <<template>
   <div class="sign-up">
-    <img src="../assets/dc_logo.jpg" width="300px">
     <h3>Create a new account</h3>
     <input
       v-model="email" 
