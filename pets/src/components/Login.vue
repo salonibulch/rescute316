@@ -31,12 +31,6 @@ export default {
             firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
                 (user)=>{
                     this.$router.replace('owner');
-                    this.$store.state.currentUser = this.email;
-                    for(var i=0;i<this.data.length;i++){
-                        if(this.data[i].email==this.email){
-                            this.$store.state.userImgUrl = this.data[i].userImgUrl;
-                        }
-                    }
                 },
                 //returns error message if log in fails
                 (err)=>{
