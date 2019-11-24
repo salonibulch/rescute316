@@ -29,6 +29,7 @@ Vue.config.productionTip = false
 //routes and url path
 const routes = [
     { path:'/', component:home, props: true},
+    { path:'*', redirection: "/"},
     { path:'/login/', component:login, props: true},
     { path:'/signup/', component:signup, props: true},
     { path:'/profile/', component:profile ,
@@ -51,6 +52,16 @@ const router = new VueRouter({
     routes,
     mode: 'history'
 })
+
+//manages the authenticated views behavior of the router.
+router.beforeEach((to, from, next) => {
+  const currentUser =  firebase.auth().currentUser;
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+
+  if (requiresAuth && !currentUser) next('/');
+  else if (!requiresAuth && currentUser) next('/owner/')
+  else next();
+});
 
 //creating vue
 new Vue({
