@@ -72,8 +72,7 @@
                         if (input.files.length > 0) {
                             var file = input.files[0];
                             // get reference to a storage location and
-                            storageRef.child('images/' + this.name + this.breed)
-                                      .put(file);
+                            storageRef.put(file);
                                       // reset input values so user knows to input new data
                                       input.value = '';
                         }
