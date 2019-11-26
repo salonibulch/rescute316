@@ -4,12 +4,10 @@
     <!-- navigation bar-->
     <div id="navbar">
         <div id="leftnav">
-<!--            navigation to home -->
-                <router-link class="routerLink" to='/'><a id="home">Home</a></router-link>
+            <router-link class="routerLink" to='/'><a id="home">Home</a></router-link>
         </div>
         <div id="rightnav">
-<!--            logging in and profile page, currently just a placeholder-->
-<router-link to="/login" active-class="login">Login</router-link>
+            <router-link to="/login" active-class="login">Login</router-link>
         </div>
     </div>
 </div>
