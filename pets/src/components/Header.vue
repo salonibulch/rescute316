@@ -6,20 +6,25 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav nav-fill w-100">
         <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <router-link class="routerLink" to='/'><a id="home">Home</a></router-link>
+        </li>
+        <li class = "nav-item" v-if="user" v-on:click="logout">
+            <router-link to="/">Logout</router-link> 
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
+           <router-link to="/login" active-class="login">Login</router-link>
         </li>
         </ul>
         </div>
-    </nav>
+    </nav> 
+    <!-- <div id="navbar">
+         <div id="leftnav">
+             <router-link class="routerLink" to='/'><a id="home">Home</a></router-link>
+         </div>
+         <div id="rightnav">
+             <router-link to="/login" active-class="login">Login</router-link>
+         </div>
+     </div> -->
 </div>
 </template>
 
@@ -31,7 +36,18 @@
         data () {
             return {
             }
-          },
+        },
+        methods: {
+            logout: function () {
+            firebase.auth().signOut().then(
+                () => {
+                this.$router.replace('home')
+                }
+            )},
+            created: function() { 
+                 this.user = firebase.auth().currentUser || false;
+            },
+        }
     }
 </script>
 

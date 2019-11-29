@@ -139,6 +139,7 @@ import firebase from "firebase";
             activePage (page) {
                 return this.pageNumber === page ? 'active' : '';
             },
+            //get individual dog info
             moreInfo(name, age, breed, userEmail, specialNeeds){
             var modal = document.getElementById('infoModal');
             modal.style.display = "block";
@@ -148,13 +149,13 @@ import firebase from "firebase";
             this.petOwnerEmail=userEmail;
             this.petNeeds=specialNeeds;
             },
+            //closing the popup
             closeInfo(){
                 var modal = document.getElementById('infoModal');
                 modal.style.display = "none";
               },
-          },
-
-    }
+            }
+          }
 </script>
 
 <style scoped>
