@@ -17,14 +17,6 @@
         </ul>
         </div>
     </nav> 
-    <!-- <div id="navbar">
-         <div id="leftnav">
-             <router-link class="routerLink" to='/'><a id="home">Home</a></router-link>
-         </div>
-         <div id="rightnav">
-             <router-link to="/login" active-class="login">Login</router-link>
-         </div>
-     </div> -->
 </div>
 </template>
 
