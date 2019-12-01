@@ -55,12 +55,13 @@
             alert('one of the fields was left empty. fill all fields before submitting')
           }
           else{
+          var user= firebase.auth().currentUser;
           petsRef.push({
             name: this.name,
             age: this.age,
             breed: this.breed,
             specialneeds: this.needs,
-            useremail:'temp@gmail.com'
+            useremail: user.email
             })
             this.name='';
             this.age='';
