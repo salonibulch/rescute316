@@ -6,6 +6,7 @@ import {store} from './store.js'
 import VueFire from 'vuefire'
 import firebase from 'firebase'
 
+
 //import styling
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
