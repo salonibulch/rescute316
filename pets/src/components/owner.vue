@@ -9,41 +9,11 @@
                       <div id="singlePet" class="col-sm-4" v-for="pet in pagedData">
                               <h5>{{ pet.name }}</h5>
                               <p>{{ pet.age }}</p>
-                              <div id="learnMore">
-                                  <button class="btn btn-success" @click="moreInfo(pet.name,pet.age,pet.breed,pet.useremail,pet.specialneeds)">Learn More</button>
-                              </div>     
-                                                         <br>
-                              <div id="infoModal">
-
-                                <!-- Creating a modal for learning more about the charity-->
-                                  <div class="modal-content">
-                                      <span class="closeButton" @click="closeInfo">&times;</span>
-                                    <div class="infoHeader">
-                                      <h2><b>{{petName}}</b></h2>
-                                        <hr>
-                                    </div>
-                                      <div class="infoBody">
-      <!--                                  information in the modal-->
-                                        <br>
-                                      <h4>Age</h4>
-                                        {{petAge}}
-                                        <br>
-                                        <br>
-                                      <h4>Breed</h4>
-                                        {{petBreed}}
-                                        <br>
-                                        <br>
-                                        <h4>Special Needs</h4>
-                                          {{petNeeds}}
-                                          <br>
-                                          <br>
-                                      <h4>Owner Email <b>{{petOwnerEmail}}</b></h4>
-                                        <br>
-                                        <br>
+                              <div id="Delete">
+                                  <button class="btn btn-success" @click="deletePet(pet)" title="Delete Pet">Delete</button>
+                              </div>
 
                                       </div>
-                                    </div>
-                                    </div>
                                 </div>
                             </div>
 
@@ -162,6 +132,11 @@ import firebase from "firebase";
                 var modal = document.getElementById('infoModal');
                 modal.style.display = "none";
               },
+              deletePet(pet){
+              if(confirm('are you sure?')){
+                  petsRef.child(pet['.key']).remove();
+              }
+            },
             }
           }
 </script>
