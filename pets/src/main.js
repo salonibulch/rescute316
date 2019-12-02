@@ -32,16 +32,11 @@ const routes = [
     { path:'*', redirection: "/"},
     { path:'/login/', component:login, props: true},
     { path:'/signup/', component:signup, props: true},
-    { path:'/profile/', component:profile ,
-      props:{
-        header: true,
-        content: true
-      },
-   },
+    { path:'/profile/', component:profile},
    {
       path: '/owner/',
       component: owner,
-      meta: { 
+      meta: {
           requiresAuth: true
       },
 },

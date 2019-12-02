@@ -1,6 +1,7 @@
 <template>
 <div id="profile">
     <div id="container">
+    <router-link class="routerLink" to='/owner'><a id="profile">Back to your profile</a></router-link>
     <div id="profileInfo">
         <!--add profile picture-->
         <div id="addInfo">
