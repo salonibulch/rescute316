@@ -1,16 +1,32 @@
+
 <template>
     <div id="home">
+    <div id="filtering">
+      <button id="sortingButton" class="btn" @click="enableSortAge = !enableSortAge; toggleSortButton();">{{sortButton.text}}</button>
+       <span class="bold"><button class="btn" id="sortingButton" @click="selectCategories=!selectCategories">Filters</button></span>
+        <div v-if="selectCategories" v-for="breed in breeds">
+                    <div class="check">
+                    <input type="checkbox" id="checkCat" :value="breed" v-model="checkedCategories"><label for="checkCat">{{breed}}</label>
+                    </div>
+                </div>
+    </div>
           <div id="listOfCharities">
           <div id="container" class="container">
               <div class="col">
                   <div id="row" class="row">
-  <!--                    single charity entry creation-->
-                      <div id="singleCharity" class="col-sm-4" v-for="pet in pagedData">
+  <!--                    single pet entry creation-->
+                      <div class="col-md-4" v-for="pet in pagedData">
+                        <div id="singlePet">
+                              <img id="petPicture" :src="pet.picture" alt="Pet Photo">
                               <h5>{{ pet.name }}</h5>
                               <p>{{ pet.age }}</p>
+                              
                               <div id="learnMore">
-                                  <button class="btn btn-success" @click="moreInfo(pet.name,pet.age,pet.breed,pet.useremail,pet.specialneeds)">Learn More</button>
-                              </div>                              <br>
+                                  <button class="btn learnbutton" @click="moreInfo(pet.name,pet.picture,pet.age,pet.breed,pet.useremail,pet.specialneeds)">Learn More</button>
+                              </div> 
+                              </div> 
+
+                                                           <br>
                               <div id="infoModal">
 
                                 <!-- Creating a modal for learning more about the charity-->
@@ -23,6 +39,7 @@
                                       <div class="infoBody">
       <!--                                  information in the modal-->
                                         <br>
+                                        <img id="petPictureModal" :src="petPicture" alt="Pet Photo">
                                       <h4>Age</h4>
                                         {{petAge}}
                                         <br>
@@ -92,12 +109,34 @@ import firebase from "firebase";
           petOwnerEmail:'',
           petNeeds:'',
           petPicture:'',
+          checkedCategories:[],
+          selectCategories: false,
+          enableSortAge: false,
+          sortButton: {
+           text: 'Sort by Age'
+          }, 
+          sorting: -1
           }
         },
         computed:{
           //returns pets from firebase data
+          sorted() {
+            if (this.enableSortAge) {
+              return this.pets.slice(0).sort((a, b) => a.age < b.age ? this.sorting : -this.sorting )
+            }
+            else {
+              return this.pets
+            }
+          },
           getPets(){
               return this.pets;
+          },
+          breeds(){
+              const br = [...new Set(this.pets.map(({ breed }) => breed))]
+
+              return br.sort((a, b) => {
+                return a - b
+              })
           },
           pageCount(){
               var l = this.pets.length
@@ -108,7 +147,7 @@ import firebase from "firebase";
               const start = this.pageNumber * this.pageSize,
               end = start + this.pageSize;
 
-              return this.pets.slice(start, end);
+              return this.sorted.slice(start, end);
           },
           //number of pages
           pageRange () {
@@ -125,6 +164,9 @@ import firebase from "firebase";
         },
         methods: {
             //go to next page
+            toggleSortButton: function() {
+                this.sortButton.text = this.enableSortAge ? 'Stop Sorting' : 'Sort by Age';
+            },
             nextPage(){
                 this.pageNumber++;
             },
@@ -140,10 +182,11 @@ import firebase from "firebase";
                 return this.pageNumber === page ? 'active' : '';
             },
             //get individual dog info
-            moreInfo(name, age, breed, userEmail, specialNeeds){
+            moreInfo(name, picture,age, breed, userEmail, specialNeeds){
             var modal = document.getElementById('infoModal');
             modal.style.display = "block";
             this.petName=name;
+            this.petPicture=picture;
             this.petAge=age;
             this.petBreed=breed;
             this.petOwnerEmail=userEmail;
@@ -184,11 +227,13 @@ import firebase from "firebase";
         text-decoration: none;
     }
 /*    styling a single charity entry*/
-    #singleCharity{
-        border:0.5px solid grey;
+    #singlePet{
         border-radius: 10px;
+        background-color: white;
         margin-top:20px;
-        padding-bottom:10px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
     }
     #categoryName{
         color: blue;
@@ -218,8 +263,20 @@ import firebase from "firebase";
         top:8px;
         right:8px;
     }
+    .learnbutton{
+        background-color: #65CCB7;
+        color: white;
+    }
+    #filtering{
+        margin: 20px;
+    }
+    #sortingButton{
+        color: black;
+        border:1px solid black;
+        margin: 5px;
+    }
 /*    styling for the modal*/
-    /* The modal for learning more about the charity */
+    /* The modal for learning more about the pet */
     #infoModal {
         display: none;
         position: fixed;
@@ -283,5 +340,23 @@ import firebase from "firebase";
     #textReview{
         width:450px;
         height:150px;
+    }
+    #petPicture{
+        width: 80%;
+        border-radius: 8px;
+        padding: 5px;
+        margin-bottom: 10px;
+        height: 180px;
+        object-fit:scale-down;
+
+    }
+     #petPictureModal{
+        width: 80%;
+        border-radius: 8px;
+        padding: 5px;
+        margin-bottom: 10px;
+        height: 500px;
+        object-fit:scale-down;
+
     }
 </style>
