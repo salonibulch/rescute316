@@ -117,21 +117,6 @@ import firebase from "firebase";
             activePage (page) {
                 return this.pageNumber === page ? 'active' : '';
             },
-            //get individual dog info
-            moreInfo(name, age, breed, userEmail, specialNeeds){
-            var modal = document.getElementById('infoModal');
-            modal.style.display = "block";
-            this.petName=name;
-            this.petAge=age;
-            this.petBreed=breed;
-            this.petOwnerEmail=userEmail;
-            this.petNeeds=specialNeeds;
-            },
-            //closing the popup
-            closeInfo(){
-                var modal = document.getElementById('infoModal');
-                modal.style.display = "none";
-              },
               deletePet(pet){
               if(confirm('are you sure?')){
                   petsRef.child(pet['.key']).remove();
@@ -200,71 +185,5 @@ import firebase from "firebase";
         position:absolute;
         top:8px;
         right:8px;
-    }
-/*    styling for the modal*/
-    /* The modal for learning more about the charity */
-    #infoModal {
-        display: none;
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        background-color: rgba(0,0,0,0.35);
-        overflow: auto;
-    }
-    /* The information inside of the modal */
-    .modal-content {
-        margin: 0 auto; /* 15% from the top and centered */
-        padding: 20px;
-        border: 1px solid black;
-        border-radius:10px;
-        width: 70%;
-    }
-    /*    Close button for the modal*/
-    .closeButton {
-        float: right;
-        font-size: 32px;
-        color: #A9A9A9;
-        text-align: right;
-    }
-    .closeButton:hover{
-        cursor: pointer;
-        color: black;
-    }
-    .infoHeader{
-        float:left;
-    }
-    .infoBody{
-        padding-top:10px;
-        padding-bottom:10px;
-    }
-/*    styling learn more link*/
-    #learnMoreLink{
-        border: 1px solid black;
-        padding: 8px 8px 8px 8px;
-        border-radius: 5px;
-        float:left;
-    }
-    #learnMoreLink:hover{
-        background-color:lightgrey;
-    }
-/*    styling donation links*/
-    #donateLink{
-        float:right;
-        border: 1px solid black;
-        padding: 8px 8px 8px 8px;
-        border-radius: 5px;
-        background-color:deepskyblue;
-        color:white;
-    }
-    #donateLink:hover{
-        background-color:dodgerblue;
-    }
-/*    styling for text review*/
-    #textReview{
-        width:450px;
-        height:150px;
     }
 </style>
