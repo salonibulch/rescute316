@@ -15,11 +15,11 @@
            <router-link to="/owner">Your Profile</router-link>
         </li>
         <li class = "nav-item" v-if="currentUser.loggedIn" @click="logout">
-            <router-link to="/">Log Out</router-link> 
+            <router-link to="/">Log Out</router-link>
         </li>
         </ul>
         </div>
-    </nav> 
+    </nav>
 </div>
 </template>
 
@@ -41,10 +41,10 @@
             logout: function () {
             firebase.auth().signOut().then(
                 () => {
-                this.$router.replace('home')
+                this.$router.replace('/')
                 }
             )},
-            created: function() { 
+            created: function() {
                  this.user = firebase.auth().currentUser || false;
             },
         }
