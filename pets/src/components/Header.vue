@@ -8,11 +8,14 @@
         <li class="nav-item active">
             <router-link class="routerLink" to='/'><a id="home">Home</a></router-link>
         </li>
+        <li class="nav-item" v-if='!currentUser.loggedIn'>
+           <router-link to="/login">Login</router-link>
+        </li>
+        <li class="nav-item" v-if="currentUser.loggedIn">
+           <router-link to="/owner">Your Profile</router-link>
+        </li>
         <li class = "nav-item" v-if="currentUser.loggedIn" @click="logout">
             <router-link to="/">Log Out</router-link> 
-        </li>
-        <li class="nav-item" v-if='!currentUser.loggedIn'>
-           <router-link to="/login" active-class="login">Login</router-link>
         </li>
         </ul>
         </div>
