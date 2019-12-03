@@ -8,24 +8,18 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
     //all data stored in state
     state:{
-        
-        getPets: []
+        currentUser: {
+            loggedIn: false,
+            data: null
+          }
     },
     mutations: {
         //set currentUser and userImgUrl, called when page is refreshed
-        setUser(state, payload) {
-            state.currentUser = payload.email;
-            state.userImgUrl = payload.photoURL;
-            //set isAdmin to true if user is admin
-            if(payload.email=='admin@admin.com'){
-                state.isAdmin=true;
-            }
-        }
-    },
-    actions: {
-        //calls on setUser mutation
-        autoSignIn ({commit}, payload) {
-            commit('setUser', {email: payload.email, photoURL:payload.photoURL})
+        SET_LOGGED_IN(state, value) {
+            state.currentUser.loggedIn = value;
+        },
+        SET_USER(state, data) {
+            state.currentUser.data = data;
         }
     },
     //get the currentUser
@@ -33,5 +27,19 @@ export const store = new Vuex.Store({
         getUser: (state) => {
             return state.currentUser;
         }
-    }
+    },
+
+    actions: {
+        fetchUser({ commit }, currentUser) {
+          commit("SET_LOGGED_IN", currentUser !== null);
+          if (currentUser) {
+            commit("SET_USER", {
+              displayName: currentUser.displayName,
+              email: currentUser.email
+            });
+          } else {
+            commit("SET_USER", null);
+          }
+        }
+      }
 });

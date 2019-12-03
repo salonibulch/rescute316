@@ -8,10 +8,10 @@
         <li class="nav-item active">
             <router-link class="routerLink" to='/'><a id="home">Home</a></router-link>
         </li>
-        <li class = "nav-item" @click="logout">
+        <li class = "nav-item" v-if="currentUser.loggedIn" @click="logout">
             <router-link to="/">Log Out</router-link> 
         </li>
-        <li class="nav-item">
+        <li class="nav-item" v-if='!currentUser.loggedIn'>
            <router-link to="/login" active-class="login">Login</router-link>
         </li>
         </ul>
@@ -24,6 +24,11 @@
     import firebase from 'firebase';
 
     export default {
+        computed: {
+           currentUser(){
+               return this.$store.state.currentUser;
+           },
+        },
         name: "Header",
         data () {
             return {
