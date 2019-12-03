@@ -12,7 +12,6 @@
                               <div id="Delete">
                                   <button class="btn btn-success" @click="deletePet(pet)" title="Delete Pet">Delete</button>
                               </div>
-
                                       </div>
                                 </div>
                             </div>

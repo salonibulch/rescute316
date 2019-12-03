@@ -5,11 +5,11 @@ import BootstrapVue from 'bootstrap-vue'
 import {store} from './store.js'
 import VueFire from 'vuefire'
 import firebase from 'firebase'
+import { mapGetters } from "vuex";
 
 //import styling
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-
 
 import profile from './components/profile.vue'
 import home from './components/home.vue'
@@ -47,6 +47,11 @@ const router = new VueRouter({
     routes,
     mode: 'history'
 })
+
+
+firebase.auth().onAuthStateChanged(user => {
+  store.dispatch("fetchUser", user);
+});
 
 //manages the authenticated views behavior of the router.
 router.beforeEach((to, from, next) => {

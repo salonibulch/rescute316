@@ -30,6 +30,7 @@ export default {
             //authenticate user
             firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
                 (user)=>{
+                    this.user = true;
                     this.$router.replace('owner');
                 },
                 //returns error message if log in fails
