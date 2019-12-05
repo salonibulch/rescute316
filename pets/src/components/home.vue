@@ -1,14 +1,17 @@
 
 <template>
     <div id="home">
+      <p> {{checkedBreeds}}</p>
     <div id="filtering">
       <button id="sortingButton" class="btn" @click="enableSortAge = !enableSortAge; toggleSortButton();">{{sortButton.text}}</button>
        <span class="bold"><button class="btn" id="sortingButton" @click="selectCategories=!selectCategories">Filters</button></span>
-        <div v-if="selectCategories" v-for="breed in breeds">
+
+        <div v-for="breed in breeds">
                     <div class="check">
-                    <input type="checkbox" id="checkCat" :value="breed" v-model="checkedCategories"><label for="checkCat">{{breed}}</label>
+                    <input type="checkbox" @click="addBreed(breed,$event); filterByBreed();" id="checkCat" :value="breed"><label>{{breed}}</label>
                     </div>
                 </div>
+
     </div>
           <div id="listOfCharities">
           <div id="container" class="container">
@@ -16,11 +19,10 @@
                   <div id="row" class="row">
   <!--                    single pet entry creation-->
                       <div class="col-md-4" v-for="pet in pagedData">
-                        <div id="singlePet">
+                        <div id="singlePet" v-if="pet.active">
                               <img id="petPicture" :src="pet.picture" alt="Pet Photo">
                               <h5>{{ pet.name }}</h5>
-                              <p>{{ pet.age }}</p>
-                              
+                              <p>{{ pet.age }}</p>                     
                               <div id="learnMore">
                                   <button class="btn learnbutton" @click="moreInfo(pet.name,pet.picture,pet.age,pet.breed,pet.useremail,pet.specialneeds)">Learn More</button>
                               </div> 
@@ -109,7 +111,7 @@ import firebase from "firebase";
           petOwnerEmail:'',
           petNeeds:'',
           petPicture:'',
-          checkedCategories:[],
+          checkedBreeds:[],
           selectCategories: false,
           enableSortAge: false,
           sortButton: {
@@ -196,7 +198,39 @@ import firebase from "firebase";
             closeInfo(){
                 var modal = document.getElementById('infoModal');
                 modal.style.display = "none";
-              },
+            },
+            addBreed(breedvar,event){
+              if (event.target.checked){
+                  this.checkedBreeds.push(breedvar);
+                }
+              else {
+                  var index = this.checkedBreeds.indexOf(breedvar);
+                  this.checkedBreeds.splice(index, 1);
+                }
+              
+            },
+            //show all pets
+            showAll() {
+                
+            },
+            //show the pets that are filtered
+            filterByBreed () {
+                for (var i in this.pets){
+                    this.pets[i].active=false;
+                }
+                for (var j in this.checkedBreeds){
+                    for (var i in this.pets){
+                        if (this.pets[i].breed == this.checkedBreeds[j]){
+                            this.pets[i].active=true;
+                        }
+                    }
+                }
+                if (this.checkedBreeds.length === 0){
+                    for (var i in this.pets){
+                      this.pets[i].active=true;
+                    }
+                }
+            }
             }
           }
 </script>
@@ -358,5 +392,8 @@ import firebase from "firebase";
         height: 500px;
         object-fit:scale-down;
 
+    }
+    #checkCat {
+        margin-right: 5px;
     }
 </style>

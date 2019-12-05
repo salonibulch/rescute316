@@ -62,7 +62,8 @@
             age: this.age,
             breed: this.breed,
             specialneeds: this.needs,
-            useremail: user.email
+            useremail: user.email,
+            active: true,
             })
             this.name='';
             this.age='';
