@@ -1,17 +1,17 @@
 <template>
 <div id="profile">
     <div id="container">
-    <router-link class="routerLink" to='/owner'><a id="profile">Back to your profile</a></router-link>
+    <router-link class="routerLink" to='/owner'><a id="profile"><button id="backButton" class="btn">Back to your profile</button></a></router-link>
     <div id="profileInfo">
         <!--add profile picture-->
         <div id="addInfo">
-            <p><b>Add Dog Picture:</b></p>
-            <form id="form" @submit.prevent="storeUserImage">
-                        <input type="file" id="userPictureInput">
-                    </form>
-            <br>
+           
             <p><b>Name:</b></p>
             <input v-model="name" type="text" placeholder="Dog Name">
+            <br>
+            <br>
+             <p><b>Picture:</b></p>
+            <input v-model="picture" type="text" placeholder="Picture URL">
             <br>
             <br>
             <p><b>Breed:</b></p>
@@ -48,6 +48,7 @@
                 age:'',
                 breed:'',
                 needs:'',
+                picture:''
             }
         },
         methods:{
@@ -60,6 +61,7 @@
           petsRef.push({
             name: this.name,
             age: this.age,
+            picture: this.picture,
             breed: this.breed,
             specialneeds: this.needs,
             useremail: user.email,
@@ -69,6 +71,7 @@
             this.age='';
             this.breed='';
             this.needs='';
+            this.picture='';
 
             var input = document.getElementById('userPictureInput');
                         // have all fields in the form been completed
@@ -90,16 +93,14 @@
 /* styling for profile information   */
     #profileInfo{
         display:inline;
-        margin-left: 55px;
-        margin-top: 10px;
+        margin-top: 40px;
     }
 /*  styling for profile div */
 <style scoped>
 /* styling for profile information   */
     #profileInfo{
         display:inline;
-        margin-left: 55px;
-        margin-top: 10px;
+        margin-top: 40px;
     }
 /*  styling for profile div */
     #container{
@@ -119,5 +120,14 @@
         border-radius: 5px;
         border:none;
         cursor:pointer;
+    }
+    #backButton{
+        color: white;
+        background-color: #d678a4; 
+        margin: 30px;
+    }
+    #backButton:hover {
+        background-color: #ad577f; 
+        color: white;
     }
 </style>

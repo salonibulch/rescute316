@@ -11,6 +11,7 @@
     import profile from "./components/profile.vue";
     import home from "./components/home.vue";
     import owner from "./components/owner.vue";
+    import ownerpreview from "./components/ownerpreview.vue";
     import {petsRef} from "./database.js";
     import {ownersRef} from "./database.js";
     import {store} from './store.js';
@@ -37,6 +38,7 @@ export default {
         profile,
         home,
         owner,
+        ownerpreview
     },
     created () {
         // when the page is reloaded, the user will still be logged in

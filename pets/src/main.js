@@ -16,6 +16,7 @@ import home from './components/home.vue'
 import login from './components/login.vue'
 import signup from './components/signup.vue'
 import owner from './components/owner.vue'
+import ownerpreview from './components/ownerpreview.vue'
 
 
 Vue.use(VueRouter)
@@ -39,7 +40,8 @@ const routes = [
       meta: {
           requiresAuth: true
       },
-},
+    },
+    { path:'/ownerpreview', name:'ownerpreview', component:ownerpreview, props:true}
 ]
 
 //creation of router

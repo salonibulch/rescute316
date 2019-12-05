@@ -44,19 +44,20 @@
       <!--                                  information in the modal-->
                                         <br>
                                         <img id="petPictureModal" :src="petPicture" alt="Pet Photo">
-                                      <h4>Age</h4>
-                                        {{petAge}}
+                                      <h4>{{petAge}}</h4>
+                                        Age
                                         <br>
                                         <br>
-                                      <h4>Breed</h4>
-                                        {{petBreed | capitalize}}
+                                      <h4>{{petBreed | capitalize}}</h4>
+                                        Breed
                                         <br>
                                         <br>
-                                        <h4>Special Needs</h4>
-                                          {{petNeeds}}
+                                        <h4>{{petNeeds}}</h4>
+                                          Special Needs
                                           <br>
                                           <br>
-                                      <h4>Owner Email <b>{{petOwnerEmail}}</b></h4>
+                                      <router-link class="routerLink" :to="{name: 'ownerpreview', params: { petOwnerEmail }}"><h4 id="ownerpreview"> <button id="buttonemail"class="btn">{{petOwnerEmail}}</button></h4></router-link>
+                                      Owner Email 
                                         <br>
                                         <br>
 
@@ -321,6 +322,10 @@ import firebase from "firebase";
         background-color: #65CCB7;
         color: white;
     }
+    .learnbutton:hover {
+        background-color: #40a893; 
+        color: white;
+    }
     #filtering{
         margin: 20px;
     }
@@ -415,5 +420,8 @@ import firebase from "firebase";
     }
     #checkCat {
         margin-right: 5px;
+    }
+    #buttonemail {
+        color:dodgerblue;
     }
 </style>

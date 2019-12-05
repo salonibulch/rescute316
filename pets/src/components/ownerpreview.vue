@@ -1,22 +1,21 @@
 <template>
     <div id="ownersPage">
+      <h4 id="owneremail"> {{petOwnerEmail}}</h4>
           <div id="listOfPets">
-          <router-link class="routerLink" to='/profile'><a id="profile"> <button id="addButton" class="btn">Create New Pet Listing</button></a></router-link>
           <div id="container" class="container">
               <div class="col">
                   <div id="row" class="row">
   <!--                    single pet entry creation-->
-  
                       <div id="singlePet" class="col-sm-4" v-for="pet in pagedData">
-                             <img id="petPicture" :src="pet.picture" alt="Pet Photo">
-                             <h4>{{ pet.name | capitalize}}</h4>
+                          
+                              <img id="petPicture" :src="pet.picture" alt="Pet Photo">
+                              <h4>{{ pet.name | capitalize}}</h4>
                               <h6>{{pet.breed | capitalize}}</h6>
                               <p>{{ pet.age }}</p> 
                               Special Needs:                   
-                             <p>{{ pet.specialneeds }}</p>    
-                              <div id="Delete">
-                                  <button class="btn btn-danger" @click="deletePet(pet)" title="Delete Pet">Delete</button>
-                              </div>
+                             <p>{{ pet.specialneeds }}</p>  
+
+                          
                                       </div>
                                 </div>
                             </div>
@@ -50,8 +49,8 @@ import { petsRef,ownersRef } from "../database.js";
 import firebase from "firebase";
 
     export default {
-        name: "ownersPage",
-
+        name: "ownerpreview",
+        props: ['petOwnerEmail'],
         firebase: {
             //firebase references
             pets: petsRef,
@@ -59,13 +58,13 @@ import firebase from "firebase";
         },
         data(){
           return{
+          petOwnerEmail: '',
           pageNumber: 0,
           pageSize: 12, //number of charities on each page
           visiblePages: 5,
           petName: '',
           petAge:'',
           petBreed:'',
-          petOwnerEmail:'',
           petNeeds:'',
           petPicture:'',
           }
@@ -77,6 +76,11 @@ import firebase from "firebase";
                 return value.charAt(0).toUpperCase() + value.slice(1)
             }
         },
+        mounted() {
+            if (this.petOwnerEmail){
+                this.petOwnerEmail = this.petOwnerEmail;
+            }        
+          },
         computed:{
           //returns pets from firebase data
           getPets(){
@@ -84,7 +88,7 @@ import firebase from "firebase";
           },
           filteredPets(){
           return this.pets.filter((pet) => {
-              if (pet.useremail.match(firebase.auth().currentUser.email) ){return true}
+              if (pet.useremail.match(this.petOwnerEmail) ){return true}
               else {return false}
               });
           },
@@ -209,6 +213,9 @@ import firebase from "firebase";
     #addButton:hover {
         background-color: #40a893; 
         color: white;
+    }
+    #owneremail {
+        margin: 20px;
     }
     #singlePet{
         border-radius: 10px;
