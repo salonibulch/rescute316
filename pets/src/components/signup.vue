@@ -42,11 +42,6 @@ export default {
                         password: this.password,
                         address: this.address,
                         number: this.number,
-                        userImgUrl: "http://www.styletextile.com/wp-content/uploads/2017/10/profile.jpg",
-                        donations: false,
-                        favorites: false,
-                        goalAmount: 0,
-                        donationTotal: 0
                     });
                 //add default profile picture to user in firebase
                     user.updateProfile({
