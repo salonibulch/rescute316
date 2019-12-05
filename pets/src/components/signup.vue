@@ -35,11 +35,9 @@ export default {
                 (user)=>{
                     this.$router.replace('home');
                     this.$store.state.currentUser = this.email;
-                    this.$store.state.userImgUrl = "http://www.styletextile.com/wp-content/uploads/2017/10/profile.jpg"
                 //add user to firebase database
                     ownersRef.push({
                         email: this.email,
-                        password: this.password,
                         address: this.address,
                         number: this.number,
                     });
