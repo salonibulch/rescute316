@@ -126,15 +126,12 @@ import firebase from "firebase";
         computed:{
           //returns pets from firebase data
           sorted() {
-            if (this.enableSortAge && this.checkedBreeds !== 0) {
-              return this.filteredBreeds.slice(0).sort((a, b) => a.age < b.age ? this.sorting : -this.sorting )
-            }
             if (this.enableSortAge) {
-              return this.pets.slice(0).sort((a, b) => a.age < b.age ? this.sorting : -this.sorting )
+              return this.filteredBreeds.slice(0).sort((a, b) => a.age < b.age ? this.sorting : -this.sorting )
             }
 
             else {
-              return this.pets
+              return this.filteredBreeds;
             }
           },
           getPets(){
@@ -149,7 +146,7 @@ import firebase from "firebase";
           },
           pageCount(){
               var l = this.pets.length
-              if (this.checkedBreeds !== 0){
+              if (this.checkedBreeds.length !== 0){
                     l = this.filteredBreeds.length;
                 }
               var s = this.pageSize;
@@ -158,9 +155,6 @@ import firebase from "firebase";
           pagedData(){
               const start = this.pageNumber * this.pageSize,
               end = start + this.pageSize;
-              if (this.checkedBreeds !== 0){
-                    return this.filteredBreeds.slice(start, end);
-                }
               return this.sorted.slice(start, end);
           },
           //number of pages
