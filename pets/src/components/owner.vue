@@ -7,7 +7,8 @@
                   <div id="row" class="row">
   <!--                    single pet entry creation-->
   
-                      <div id="singlePet" class="col-sm-4" v-for="pet in pagedData">
+                      <div class="col-md-4" v-for="pet in pagedData">
+                        <div id="singlePet">
                              <img id="petPicture" :src="pet.picture" alt="Pet Photo">
                              <h4>{{ pet.name | capitalize}}</h4>
                               <h6>{{pet.breed | capitalize}}</h6>
@@ -18,6 +19,7 @@
                                   <button class="btn btn-danger" @click="deletePet(pet)" title="Delete Pet">Delete</button>
                               </div>
                                       </div>
+                                    </div>
                                 </div>
                             </div>
 

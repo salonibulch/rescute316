@@ -6,8 +6,8 @@
               <div class="col">
                   <div id="row" class="row">
   <!--                    single pet entry creation-->
-                      <div id="singlePet" class="col-sm-4" v-for="pet in pagedData">
-                          
+                      <div class="col-md-4" v-for="pet in pagedData">
+                           <div id="singlePet">
                               <img id="petPicture" :src="pet.picture" alt="Pet Photo">
                               <h4>{{ pet.name | capitalize}}</h4>
                               <h6>{{pet.breed | capitalize}}</h6>
@@ -17,6 +17,7 @@
 
                           
                                       </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -225,6 +226,7 @@ import firebase from "firebase";
         padding-bottom: 20px;
         box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
     }
+
      #petPicture{
         width: 80%;
         border-radius: 8px;
