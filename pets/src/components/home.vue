@@ -1,14 +1,13 @@
 
 <template>
     <div id="home">
-      <p> {{checkedBreeds}}</p>
     <div id="filtering">
       <button id="sortingButton" class="btn" @click="enableSortAge = !enableSortAge; toggleSortButton();">{{sortButton.text}}</button>
        <span class="bold"><button class="btn" id="sortingButton" @click="selectCategories=!selectCategories">Filters</button></span>
 
-        <div v-for="breed in breeds">
+        <div v-show="selectCategories" v-for="breed in breeds">
                     <div class="check">
-                    <input type="checkbox" @click="addBreed(breed,$event); filterByBreed();" id="checkCat" :value="breed"><label>{{breed}}</label>
+                    <input type="checkbox" @click="addBreed(breed,$event); filterByBreed();" id="checkCat" :value="breed"><label>{{breed | capitalize}}</label>
                     </div>
                 </div>
 
@@ -19,13 +18,16 @@
                   <div id="row" class="row">
   <!--                    single pet entry creation-->
                       <div class="col-md-4" v-for="pet in pagedData">
-                        <div id="singlePet" v-if="pet.active">
+                        
+                        <div id="singlePet">
                               <img id="petPicture" :src="pet.picture" alt="Pet Photo">
-                              <h5>{{ pet.name }}</h5>
-                              <p>{{ pet.age }}</p>                     
+                              <h4>{{ pet.name | capitalize}}</h4>
+                              <h6>{{pet.breed | capitalize}}</h6>
+                              <p>{{ pet.age }}</p>                    
                               <div id="learnMore">
                                   <button class="btn learnbutton" @click="moreInfo(pet.name,pet.picture,pet.age,pet.breed,pet.useremail,pet.specialneeds)">Learn More</button>
                               </div> 
+
                               </div> 
 
                                                            <br>
@@ -35,7 +37,7 @@
                                   <div class="modal-content">
                                       <span class="closeButton" @click="closeInfo">&times;</span>
                                     <div class="infoHeader">
-                                      <h2><b>{{petName}}</b></h2>
+                                      <h2><b>{{petName | capitalize}}</b></h2>
                                         <hr>
                                     </div>
                                       <div class="infoBody">
@@ -47,7 +49,7 @@
                                         <br>
                                         <br>
                                       <h4>Breed</h4>
-                                        {{petBreed}}
+                                        {{petBreed | capitalize}}
                                         <br>
                                         <br>
                                         <h4>Special Needs</h4>
@@ -62,6 +64,7 @@
                                     </div>
                                     </div>
                                 </div>
+                             
                             </div>
 
                       </div>
@@ -123,9 +126,13 @@ import firebase from "firebase";
         computed:{
           //returns pets from firebase data
           sorted() {
+            if (this.enableSortAge && this.checkedBreeds !== 0) {
+              return this.filteredBreeds.slice(0).sort((a, b) => a.age < b.age ? this.sorting : -this.sorting )
+            }
             if (this.enableSortAge) {
               return this.pets.slice(0).sort((a, b) => a.age < b.age ? this.sorting : -this.sorting )
             }
+
             else {
               return this.pets
             }
@@ -142,13 +149,18 @@ import firebase from "firebase";
           },
           pageCount(){
               var l = this.pets.length
+              if (this.checkedBreeds !== 0){
+                    l = this.filteredBreeds.length;
+                }
               var s = this.pageSize;
               return Math.floor(l/s);
           },
           pagedData(){
               const start = this.pageNumber * this.pageSize,
               end = start + this.pageSize;
-
+              if (this.checkedBreeds !== 0){
+                    return this.filteredBreeds.slice(start, end);
+                }
               return this.sorted.slice(start, end);
           },
           //number of pages
@@ -162,7 +174,21 @@ import firebase from "firebase";
                   range.push(start + i-1)
               }
               return range
-          }
+          },
+          filteredBreeds () {
+                return this.pets.filter((pet) => { 
+                    if (pet.active) {return true}
+                    else {return false}
+                });
+                
+            }
+        },
+        filters: {
+          capitalize: function(value) {
+                if (!value) return ''
+                value = value.toString()
+                return value.charAt(0).toUpperCase() + value.slice(1)
+            }
         },
         methods: {
             //go to next page
