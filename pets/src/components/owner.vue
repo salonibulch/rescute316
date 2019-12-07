@@ -1,20 +1,21 @@
 <template>
     <div id="ownersPage">
+        <h4 id="ownername"> Hi + {{ownerName}}</h4>
           <div id="listOfPets">
           <router-link class="routerLink" to='/profile'><a id="profile"> <button id="addButton" class="btn">Create New Pet Listing</button></a></router-link>
           <div id="container" class="container">
               <div class="col">
                   <div id="row" class="row">
   <!--                    single pet entry creation-->
-  
+
                       <div class="col-md-4" v-for="pet in pagedData">
                         <div id="singlePet">
                              <img id="petPicture" :src="pet.picture" alt="Pet Photo">
                              <h4>{{ pet.name | capitalize}}</h4>
                               <h6>{{pet.breed | capitalize}}</h6>
-                              <p>{{ pet.age }}</p> 
-                              Special Needs:                   
-                             <p>{{ pet.specialneeds }}</p>    
+                              <p>{{ pet.age }}</p>
+                              Special Needs:
+                             <p>{{ pet.specialneeds }}</p>
                               <div id="Delete">
                                   <button class="btn btn-danger" @click="deletePet(pet)" title="Delete Pet">Delete</button>
                               </div>
@@ -70,6 +71,8 @@ import firebase from "firebase";
           petOwnerEmail:'',
           petNeeds:'',
           petPicture:'',
+          ownerName:'',
+          ownerNumber:''
           }
         },
         filters: {
@@ -132,9 +135,18 @@ import firebase from "firebase";
             },
               deletePet(pet){
               if(confirm('are you sure?')){
+                owners.orderByChild("name").equalTo("Dian").once('value').then(snapshot =>
+                  this.ownerName=snapshot.val().name);
+                  alert("hi");
                   petsRef.child(pet['.key']).remove();
               }
             },
+          },
+          mounted() {
+              owners.orderByChild("email").equalTo(firebase.auth().currentUser.email).once('value',(snapshot) =>{
+                this.ownerName=snapshot.val().name;
+              })
+
             }
           }
 </script>
@@ -209,7 +221,7 @@ import firebase from "firebase";
         padding-bottom: 12px;
     }
     #addButton:hover {
-        background-color: #40a893; 
+        background-color: #40a893;
         color: white;
     }
     #singlePet{

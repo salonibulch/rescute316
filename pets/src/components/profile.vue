@@ -5,13 +5,13 @@
     <div id="profileInfo">
         <!--add profile picture-->
         <div id="addInfo">
-           
+          <p><b>Picture:</b></p>
+                      <form id="form">
+                                  <input type="file" id="userPictureInput">
+                              </form>
+                      <br>
             <p><b>Name:</b></p>
             <input v-model="name" type="text" placeholder="Dog Name">
-            <br>
-            <br>
-             <p><b>Picture:</b></p>
-            <input v-model="picture" type="text" placeholder="Picture URL">
             <br>
             <br>
             <p><b>Breed:</b></p>
@@ -52,38 +52,37 @@
             }
         },
         methods:{
-        submit(){
-          if(this.name==''|| this.breed==''|| this.age=='' || this.needs==''){
+        submit: function(event){
+          var input = document.getElementById('userPictureInput');
+          if(this.name==''|| this.breed==''|| this.age=='' || this.needs==''||input.files.length <= 0){
             alert('one of the fields was left empty. fill all fields before submitting')
           }
           else{
           var user= firebase.auth().currentUser;
+          var file = input.files[0];
+          // get reference to a storage location and
+          storageRef.child('images/'+file.name).put(file).then(snapshot =>
+            this.addpet(snapshot.downloadURL)
+          );
+          input.value = '';
+        }
+        },
+        addpet: function(url){
+          var user= firebase.auth().currentUser;
           petsRef.push({
             name: this.name,
+            picture: url,
             age: this.age,
-            picture: this.picture,
             breed: this.breed,
             specialneeds: this.needs,
             useremail: user.email,
             active: true,
-            })
-            this.name='';
-            this.age='';
-            this.breed='';
-            this.needs='';
-            this.picture='';
-
-            var input = document.getElementById('userPictureInput');
-                        // have all fields in the form been completed
-                        if (input.files.length > 0) {
-                            var file = input.files[0];
-                            // get reference to a storage location and
-                            storageRef.put(file);
-                                      // reset input values so user knows to input new data
-                                      input.value = '';
-                        }
+          })
+        this.name='';
+        this.age='';
+        this.breed='';
+        this.needs='';
         }
-        },
         }
 
     }
@@ -123,11 +122,11 @@
     }
     #backButton{
         color: white;
-        background-color: #d678a4; 
+        background-color: #d678a4;
         margin: 30px;
     }
     #backButton:hover {
-        background-color: #ad577f; 
+        background-color: #ad577f;
         color: white;
     }
 </style>
