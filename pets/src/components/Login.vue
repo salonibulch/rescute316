@@ -1,6 +1,5 @@
 <template>
         <div class="login">
-            <h2>Log In</h2>
             <input class="inputForm" type="text" v-model="email" placeholder="Email"><br>
             <input class="inputForm" type="password" v-model="password" placeholder="Password"><br>
             <button class="btn btn-primary" @click="logIn">Log In</button><br>
@@ -46,8 +45,6 @@ export default {
 /*   styling for login div*/
     .login {
         margin-top: 40px;
-        border-top: 3px solid black;
-        border-bottom: 3px solid black;
         padding-top:20px;
         padding-bottom:20px;
     }
