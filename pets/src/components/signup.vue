@@ -1,15 +1,13 @@
 <template>
         <div class="signup">
             <!-- sign up form-->
-            <h2>Sign Up</h2>
             <input class="inputForm" type="text" v-model="name" placeholder="Name"><br>
             <input class="inputForm" type="email" v-model="email" placeholder="Email"><br>
             <input class="inputForm" type="password" v-model="password" placeholder="Password"><br>
             <input class="inputForm" type="tel"  pattern="[0-9]" maxlength="10" v-model="number" placeholder="Number"><br>
             <input class="inputForm" type="text" v-model="address" placeholder="Address"><br>
-
-            <button class="btn btn-success" @click="signUp">Sign Up</button><br>
-            <span>Have an account? <router-link to="/login"><button id="loginButton" class="btn btn-primary btn-sm">Login</button></router-link></span>
+            <button class="btn btn-primary" @click="signUp">Sign Up</button><br>
+            <span><router-link to="/login">Have an account? </router-link></span>
         </div>
 </template>
 
@@ -62,8 +60,6 @@ export default {
     /* styling for sign up panel*/
     .signup {
         margin-top: 40px;
-        border-top: 3px solid black;
-        border-bottom: 3px solid black;
         padding-top:20px;
         padding-bottom:20px;
     }

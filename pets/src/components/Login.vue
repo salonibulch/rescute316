@@ -5,7 +5,7 @@
             <button class="btn btn-primary" @click="logIn">Log In</button><br>
             <br>
             <!--redirect to sign up-->
-            <span>Don't have an account? <router-link to="/signup"><button id="signUpButton" class="btn btn-success btn-sm">Sign Up</button></router-link></span>
+            <span><router-link to="/signup">Sign Up</router-link></span>
         </div>
 </template>
 
