@@ -8,7 +8,6 @@
             <input class="inputForm" type="tel"  pattern="[0-9]" maxlength="10" v-model="number" placeholder="Number"><br>
             <input class="inputForm" type="text" v-model="address" placeholder="Address"><br>
 
-
             <button class="btn btn-success" @click="signUp">Sign Up</button><br>
             <span>Have an account? <router-link to="/login"><button id="loginButton" class="btn btn-primary btn-sm">Login</button></router-link></span>
         </div>
@@ -33,8 +32,8 @@ export default {
             //add user to firebase authentication
             firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
                 (user)=>{
-                    this.$router.replace('home');
-                    this.$store.state.currentUser = this.email;
+                    this.user = true;
+                    this.$router.replace('owner');
                 //add user to firebase database
                     ownersRef.push({
                         email: this.email,
