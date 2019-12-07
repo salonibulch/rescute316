@@ -2,7 +2,9 @@
 <div id="Header">
     <h1>ResCute</h1>
     <!-- navigation bar-->
+    <img class="imagedog" src="https://firebasestorage.googleapis.com/v0/b/rescute-95042.appspot.com/o/images%2Fdog.jpg?alt=media&token=9d8120d3-c1dc-4809-805f-b1125bfd85d4">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav nav-fill w-100">
         <li class="nav-item active">
@@ -52,9 +54,12 @@
 </script>
 
 <style scoped>
-    h1{
-        font-size: 50px;
-        margin-bottom: 20px;
+    h1 {
+    @import url('https://fonts.googleapis.com/css?family=Lilita+One&display=swap');
+    font-family: 'Lilita One', cursive;
+    font-size: 70px;
+    margin-left:10px;
+    margin-bottom: 20px;
     }
     /*styling for each link in header nav */
     #home{
@@ -100,5 +105,8 @@
         padding-bottom:5px;
         display: inline-block;
         float:right;
+    }
+    .imagedog {
+        width: 20%;
     }
 </style>

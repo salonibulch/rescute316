@@ -135,9 +135,6 @@ import firebase from "firebase";
             },
               deletePet(pet){
               if(confirm('are you sure?')){
-                owners.orderByChild("name").equalTo("Dian").once('value').then(snapshot =>
-                  this.ownerName=snapshot.val().name);
-                  alert("hi");
                   petsRef.child(pet['.key']).remove();
               }
             },
