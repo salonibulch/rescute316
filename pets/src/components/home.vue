@@ -107,7 +107,7 @@ import firebase from "firebase";
         data(){
           return{
           pageNumber: 0,
-          pageSize: 12, //number of charities on each page
+          pageSize: 12, //number of pets on each page
           visiblePages: 5,
           petName: '',
           petAge:'',
@@ -139,19 +139,16 @@ import firebase from "firebase";
               return this.pets;
           },
           breeds(){
-              const br = [...new Set(this.pets.map(({ breed }) => breed))]
+              const br = [...new Set(this.pets.map(({ breed }) => breed.toLowerCase()))]
 
               return br.sort((a, b) => {
                 return a - b
               })
           },
           pageCount(){
-              var l = this.pets.length
-              if (this.checkedBreeds.length !== 0){
-                    l = this.filteredBreeds.length;
-                }
+              var l = this.filteredBreeds.length
               var s = this.pageSize;
-              return Math.floor(l/s);
+              return Math.ceil(l/s);
           },
           pagedData(){
               const start = this.pageNumber * this.pageSize,
@@ -241,7 +238,7 @@ import firebase from "firebase";
                 }
                 for (var j in this.checkedBreeds){
                     for (var i in this.pets){
-                        if (this.pets[i].breed == this.checkedBreeds[j]){
+                        if (this.pets[i].breed.toLowerCase() == this.checkedBreeds[j].toLowerCase()){
                             this.pets[i].active=true;
                         }
                     }

@@ -98,7 +98,8 @@ import firebase from "firebase";
           pageCount(){
               var l = this.filteredPets.length
               var s = this.pageSize;
-              return Math.floor(l/s);
+              return Math.ceil(l/s);
+
           },
           pagedData(){
               const start = this.pageNumber * this.pageSize,
