@@ -1,6 +1,8 @@
 <template>
     <div id="ownersPage">
-      <h4 id="owneremail"> {{petOwnerEmail}}</h4>
+      <h3> This is {{ownerName}}'s profile!</h3>
+      <h6 id="owneremail"> Email Address: {{petOwnerEmail}}</h6>
+      <h6>Phone Number: {{ownerNumber}}</h6>
           <div id="listOfPets">
           <div id="container" class="container">
               <div class="col">
@@ -11,11 +13,11 @@
                               <img id="petPicture" :src="pet.picture" alt="Pet Photo">
                               <h4>{{ pet.name | capitalize}}</h4>
                               <h6>{{pet.breed | capitalize}}</h6>
-                              <p>{{ pet.age }}</p> 
-                              Special Needs:                   
-                             <p>{{ pet.specialneeds }}</p>  
+                              <p>{{ pet.age }}</p>
+                              Special Needs:
+                             <p>{{ pet.specialneeds }}</p>
 
-                          
+
                                       </div>
                                     </div>
                                 </div>
@@ -80,7 +82,7 @@ import firebase from "firebase";
         mounted() {
             if (this.petOwnerEmail){
                 this.petOwnerEmail = this.petOwnerEmail;
-            }        
+            }
           },
         computed:{
           //returns pets from firebase data
@@ -115,7 +117,23 @@ import firebase from "firebase";
                   range.push(start + i-1)
               }
               return range
-          }
+          },
+          ownerNumber(){
+            var num
+            ownersRef.orderByChild('email').equalTo(this.petOwnerEmail).on("child_added",function(snapshot){
+               num = snapshot.val().number;
+
+            })
+            return num;
+          },
+
+          ownerName(){
+            var name
+            ownersRef.orderByChild('email').equalTo(this.petOwnerEmail).on("child_added",function(snapshot){
+               name = snapshot.val().name;
+             })
+             return name;
+           },
         },
         methods: {
             //go to next page
@@ -143,14 +161,6 @@ import firebase from "firebase";
 </script>
 
 <style scoped>
-/*    styling for overall charity div*/
-    #charity{
-        text-align: center;
-    }
-    #title{
-        margin: 20px;
-        text-align: center;
-    }
 /*    styling the page navigation at the bottom of the page*/
     .pageChangeNav{
         margin-right:35px;
@@ -163,58 +173,7 @@ import firebase from "firebase";
         margin-right:2px;
         background: none;
     }
-    a{
-        color: black;
-        text-decoration: none;
-    }
-/*    styling a single charity entry*/
-    #singleCharity{
-        border:0.5px solid grey;
-        border-radius: 10px;
-        margin-top:20px;
-        padding-bottom:10px;
-    }
-    #categoryName{
-        color: blue;
-    }
-    #searchArea{
-        background-color:#f2f2f2;
-        border:1px solid black;
-        margin-top:10px;
-        padding-top:20px;
-        padding-bottom:20px;
-    }
-    #filter{
-        display: inline;
-        float:left;
-        margin-left:150px;
-    }
-/*    styling search bar*/
-    #search{
-        display:inline;
-        margin-left:250px;
-    }
-    #searchBar{
-        width:220px;
-    }
-    #favoritesButton{
-        position:absolute;
-        top:8px;
-        right:8px;
-    }
-    #addButton{
-        color: white;
-        background-color: #65CCB7;
-        margin: 20px;
-        padding-left: 40px;
-        padding-right: 40px;
-        padding-top: 12px;
-        padding-bottom: 12px;
-    }
-    #addButton:hover {
-        background-color: #40a893; 
-        color: white;
-    }
+
     #owneremail {
         margin: 20px;
     }

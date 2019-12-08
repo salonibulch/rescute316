@@ -1,6 +1,8 @@
 <template>
     <div id="ownersPage">
-        <h4 id="ownername"> Hi + {{ownerName}}</h4>
+      <h3> Hi {{ownerName}}!</h3>
+      <h6>Email Address: {{ownerEmail}}</h6>
+      <h6>Phone Number: {{ownerNumber}}</h6>
           <div id="listOfPets">
           <router-link class="routerLink" to='/profile'><a id="profile"> <button id="addButton" class="btn">Create New Pet Listing</button></a></router-link>
           <div id="container" class="container">
@@ -63,16 +65,8 @@ import firebase from "firebase";
         data(){
           return{
           pageNumber: 0,
-          pageSize: 12, //number of charities on each page
+          pageSize: 12,
           visiblePages: 5,
-          petName: '',
-          petAge:'',
-          petBreed:'',
-          petOwnerEmail:'',
-          petNeeds:'',
-          petPicture:'',
-          ownerName:'',
-          ownerNumber:''
           }
         },
         filters: {
@@ -115,8 +109,26 @@ import firebase from "firebase";
                   range.push(start + i-1)
               }
               return range
-          }
-        },
+          },
+          ownerNumber(){
+            var num
+            ownersRef.orderByChild('email').equalTo(firebase.auth().currentUser.email).on("child_added",function(snapshot){
+               num = snapshot.val().number;
+
+            })
+            return num;
+          },
+          ownerEmail(){
+            return firebase.auth().currentUser.email;
+          },
+          ownerName(){
+            var name
+            ownersRef.orderByChild('email').equalTo(firebase.auth().currentUser.email).on("child_added",function(snapshot){
+               name = snapshot.val().name;
+             })
+             return name;
+           },
+          },
         methods: {
             //go to next page
             nextPage(){
@@ -139,12 +151,6 @@ import firebase from "firebase";
               }
             },
           },
-          mounted() {
-              owners.orderByChild("email").equalTo(firebase.auth().currentUser.email).once('value',(snapshot) =>{
-                this.ownerName=snapshot.val().name;
-              })
-
-            }
           }
 </script>
 
