@@ -156,10 +156,7 @@ import firebase from "firebase";
 </script>
 
 <style scoped>
-/*    styling for overall charity div*/
-    #charity{
-        text-align: center;
-    }
+
     #title{
         margin: 20px;
         text-align: center;
@@ -180,54 +177,7 @@ import firebase from "firebase";
         color: black;
         text-decoration: none;
     }
-/*    styling a single charity entry*/
-    #singleCharity{
-        border:0.5px solid grey;
-        border-radius: 10px;
-        margin-top:20px;
-        padding-bottom:10px;
-    }
-    #categoryName{
-        color: blue;
-    }
-    #searchArea{
-        background-color:#f2f2f2;
-        border:1px solid black;
-        margin-top:10px;
-        padding-top:20px;
-        padding-bottom:20px;
-    }
-    #filter{
-        display: inline;
-        float:left;
-        margin-left:150px;
-    }
-/*    styling search bar*/
-    #search{
-        display:inline;
-        margin-left:250px;
-    }
-    #searchBar{
-        width:220px;
-    }
-    #favoritesButton{
-        position:absolute;
-        top:8px;
-        right:8px;
-    }
-    #addButton{
-        color: white;
-        background-color: #65CCB7;
-        margin: 20px;
-        padding-left: 40px;
-        padding-right: 40px;
-        padding-top: 12px;
-        padding-bottom: 12px;
-    }
-    #addButton:hover {
-        background-color: #40a893;
-        color: white;
-    }
+
     #singlePet{
         border-radius: 10px;
         background-color: white;

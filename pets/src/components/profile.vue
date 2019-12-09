@@ -95,13 +95,6 @@
         margin-top: 40px;
     }
 /*  styling for profile div */
-<style scoped>
-/* styling for profile information   */
-    #profileInfo{
-        display:inline;
-        margin-top: 40px;
-    }
-/*  styling for profile div */
     #container{
         margin-top:50px;
         border-left: 1px solid black;

@@ -41,7 +41,7 @@ export default {
         ownerpreview
     },
     created () {
-        // when the page is reloaded, the user will still be logged in
+        // when the page is reloaded, the user will still be signed in
         firebase.auth().onAuthStateChanged((firebaseUser) => {
           if (firebaseUser) {
               this.$store.dispatch('autoSignIn',firebaseUser)

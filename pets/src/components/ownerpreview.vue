@@ -16,8 +16,6 @@
                               <p>{{ pet.age }}</p>
                               Special Needs:
                              <p>{{ pet.specialneeds }}</p>
-
-
                                       </div>
                                     </div>
                                 </div>
@@ -65,11 +63,6 @@ import firebase from "firebase";
           pageNumber: 0,
           pageSize: 12, //number of charities on each page
           visiblePages: 5,
-          petName: '',
-          petAge:'',
-          petBreed:'',
-          petNeeds:'',
-          petPicture:'',
           }
         },
         filters: {
